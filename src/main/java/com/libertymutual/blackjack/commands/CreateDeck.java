@@ -1,5 +1,8 @@
 package com.libertymutual.blackjack.commands;
 
+import java.util.Objects;
+import java.util.Stack;
+
 public class CreateDeck {
 
 	public static void main(String[] args) {
@@ -16,14 +19,29 @@ public class CreateDeck {
 		};
 		
 		
+		Stack<String> cards = new Stack(); 
+		
 		for (String suit: suits) {
 			for (int value: values) {
-				System.out.println(suit + value);
-			}
+				cards.push(suit + value);
+				
+				}
 			for (String face: faces) {
-				System.out.println(suit + face);
+				cards.push(suit + face);
+				}
 			}
-		}
+
+		System.out.println(cards);
+		
+// testing arrays
+//		for (String suit: suits) {
+//			for (int value: values) {
+//				System.out.println(suit + value);
+//			}
+//			for (String face: faces) {
+//				System.out.println(suit + face);
+//			}
+//		}
 		
 		
 			
