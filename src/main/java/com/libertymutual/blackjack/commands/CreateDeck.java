@@ -5,23 +5,27 @@ import java.util.Stack;
 
 public class CreateDeck {
 
-		public static void main(String[] args) {
-			String[] suits = {
-					"clubs", "diamonds", "hearts", "spades"
-			};
+		private Card[] cards;
+		private int currentCardIndex;
+		public Stack<String> cardStack;
+		
+		public void Deck() {
+		
+//		public static void main(String[] args) {
+			String[] suits = new String[] 
+					{"clubs", "diamonds", "hearts", "spades"};
+			int i = 0;
 			
-			int[] values = {
-					2, 3, 4, 5, 6, 7, 8, 9, 10 
-			};
+			int[] values = new int[] 
+					{2, 3, 4, 5, 6, 7, 8, 9, 10};
 			
-			String[] faces= {
-					"J", "Q", "K", "A"
-			};
-			
+			String[] faces= new String[] 
+					{"J", "Q", "K", "A"};
 			
 			Stack<String> cards = new Stack<String>(); 
 			
 			for (String suit: suits) {
+				
 				for (int value: values) {
 					cards.push(suit + value);
 					
@@ -31,14 +35,28 @@ public class CreateDeck {
 					}
 				}
 			
-			
-			System.out.println(cards);
 		}
 		
-		
+		public void shuffle() {
+			Collections.shuffle(cardStack);
+		}
+			
+			public String getCard() {
+				if (currentCardIndex >= cards.length) {
+					return null;
+				}
+				
+				return cardStack.pop();
+				
+			}
+//test only			
+//			System.out.println(cards);
 }
 		
-//Collections.shuffle(cards);
+		
+
+		
+
 // test
 //		System.out.println(cards);
 	

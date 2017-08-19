@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Blackjack game</title>
+</head>
+<body>
+Dealer 
+ 
+{{ #hand.cards }}  {{ . }}  {{ /hand.cards }}
+{{ #hand.values }}   {{ . }}  {{ /hand.values }}
+<hr>
+Player       
+<br>
+<div id = hand>
+cards: 
+</div>
+<div id = bet>
+bet: 
+</div>
+ <form>
+ <button>Hit me</button> <button>Stand</button>
+ </form>
+</body>
+</html>
