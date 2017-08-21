@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Blackjack game</title>
+</head>
+<body>
+
+<h1>Welcome to the table!</h1>
+<h2>To begin, enter your bet below.</h2>
+<br>
+<form method="post" action="/blackjackgame/start">
+$<input autofocus type = "number" name="bet"></input><button>Place my bet!</button>
+</form>
+
+<br><br><br>
+<form method="post" action="/blackjackgame/deal">
+<button>Deal some cards.</button>
+</form>
+<br>
+<br><br><br>
+<strong>Dealer</strong> 
+<br>
+<br>
+
+<hr>
+<strong>Player</strong>       
+<br>
+Cards:
+<br>
+Values:
+<br>
+Wagers: $ {{ bet }} .00 
+<br> 
+
+ <form method="post" action="/blackjackgame/hit">
+ <button>Hit me</button> 
+ </form>
+ <form method="post" action="/blackjackgame/stand">
+ <button>Stand</button>
+</form>
+</body>
+</html>

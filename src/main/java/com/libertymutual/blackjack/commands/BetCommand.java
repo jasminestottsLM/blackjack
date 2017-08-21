@@ -1,11 +1,19 @@
 package com.libertymutual.blackjack.commands;
 
+import java.util.Stack;
+
 public class BetCommand {
 	
-	private double bet;
+	private Stack<Integer> betStack;
+	private boolean activeGame = false;
 	
-	public BetCommand(double bet) {
-		
-	} 	 
+	public BetCommand(Stack<Integer> betStack) {
+		this.betStack = betStack;
+	}
+
+	public void wager(int bet) {
+		betStack.push(bet);
+		activeGame = true;
+	}
 	
 }

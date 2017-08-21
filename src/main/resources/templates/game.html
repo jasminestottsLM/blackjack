@@ -5,19 +5,19 @@
 <title>Blackjack game</title>
 </head>
 <body>
-Dealer 
- 
-{{ #hand.cards }}  {{ . }}  {{ /hand.cards }}
-{{ #hand.values }}   {{ . }}  {{ /hand.values }}
-<hr>
-Player       
+<strong>Dealer</strong> 
 <br>
-<div id = hand>
-cards: 
-</div>
-<div id = bet>
-bet: 
-</div>
+Cards:  {{ #hand.cards }}  {{ . }}  {{ /hand.cards }}
+<br>
+Values: {{ #hand.values }}   {{ . }}  {{ /hand.values }}
+<hr>
+<strong>Player</strong>       
+<br>
+Cards:
+<br>
+Values:
+<br> 
+bet: $ {{ bet }}.00
  <form>
  <button>Hit me</button> <button>Stand</button>
  </form>
