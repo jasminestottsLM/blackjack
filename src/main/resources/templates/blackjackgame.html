@@ -5,32 +5,37 @@
 <title>Blackjack game</title>
 </head>
 <body>
-
+<!--  
 <h1>Welcome to the table!</h1>
+
 <h2>To begin, enter your bet below.</h2>
 <br>
 <form method="post" action="/blackjackgame/start">
 $<input autofocus type = "number" name="bet"></input><button>Place my bet!</button>
 </form>
-
+ -->
 <br><br><br>
 <form method="post" action="/blackjackgame/deal">
 <button>Deal some cards.</button>
 </form>
 <br>
 <br><br><br>
-<strong>Dealer</strong> 
+<strong>Dealer</strong>
+<br> 
+Cards: 
 <br>
 <br>
 
 <hr>
 <strong>Player</strong>       
 <br>
-Cards:
+Cards: {{ playerHand }}
 <br>
-Values:
+Values: {{ playerScore }}
 <br>
-Wagers: $ {{ bet }} .00 
+Current Bet: $ {{ bet }} .00
+<br>
+Wallet: $ {{ wallet }}  
 <br> 
 
  <form method="post" action="/blackjackgame/hit">

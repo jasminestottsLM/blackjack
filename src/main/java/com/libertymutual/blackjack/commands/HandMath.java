@@ -1,5 +1,7 @@
 package com.libertymutual.blackjack.commands;
 
+import java.util.Arrays;
+
 public class HandMath {
 
 	public int handMath(String[] hand) {
@@ -33,6 +35,87 @@ public class HandMath {
 		}
 		
 			return handValue;
+	}
+	
+	public String blarg(String inString) {
+		String outString;
+		if (inString == null) { 
+			outString = "";
+		}  else {
+			outString = inString;
+		}
+		return outString;
+	}
+	
+	public String result(int playerHandValue, int dealerHandValue, int wallet, int bet, boolean nobet, String[] dealerHand, String[] dealerShownResult, String[] dealerShownForHit, String[] dealerShownForStand) {
+		String result = null;
+		if (playerHandValue > 21) {
+	// case player bust
+			wallet -= bet;
+	//		dealerShown = dealerHand;
+	//		Arrays.toString(dealerShown);
+			nobet = true;
+			result = "playerbust";
+			
+		} else  {
+			if (playerHandValue == 21 && dealerHandValue == 21) {
+	// case both blackjack
+//				dealerShownResult = dealerHand;
+//				Arrays.toString(dealerShownResult);
+				nobet = true;
+				result = "tie";
+				
+			} else
+				if (playerHandValue == 21) {
+	// case player blackjack
+					wallet += (1.5 * bet);
+//					dealerShownResult = dealerHand;
+//					Arrays.toString(dealerShownResult);
+	//				Arrays.toString(dealerShown);
+					nobet = true;
+					result = "win";
+					
+				} else if (dealerHandValue > 21) {
+	// case dealer bust
+					wallet += (2* bet);
+//					dealerShownResult = dealerHand;
+//					Arrays.toString(dealerShownResult);
+					nobet = true;
+					result = "win";
+					
+					System.out.println(wallet);
+				} else if (playerHandValue > dealerHandValue) {
+					wallet += (2* bet);
+//					dealerShownResult = dealerHand;
+//					Arrays.toString(dealerShownResult);
+					nobet = true;
+					result = "win";
+					
+				} else if (playerHandValue == dealerHandValue) {
+//					dealerShownResult = dealerHand;
+//					Arrays.toString(dealerShownResult);
+					nobet = true;
+					result = "tie";
+					
+				} else if (dealerHandValue > playerHandValue) {
+					wallet -= bet;
+//					dealerShownResult = dealerHand;
+//					Arrays.toString(dealerShownResult);
+					nobet = true;
+					result = "lose";
+					
+				} else { 
+//					Arrays.toString(dealerShownForHit);
+					result = "blackjackgame"; }
+				
+	//			Arrays.toString(dealerShown);
+		}
+		
+		
+		return result;
+		
+		
+		
 	}
 }
 		
