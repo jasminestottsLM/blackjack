@@ -49,48 +49,28 @@ public class HandMath {
 		return outString;
 	}
 	
-	public double result(Model model, int playerHandValue, int dealerHandValue, int bet, boolean nobet, String[] dealerHand, String[] dealerShownResult, String[] dealerShownForHit, String[] dealerShownForStand) {
+	public double result(Model model, int playerHandValue, int dealerHandValue, int bet, String[] dealerHand) {
 		double result = 0;
 		double walletMod;
 		if (playerHandValue > 21) {
-	// case player bust
-	//		wallet -= bet;
-	//		dealerShown = dealerHand;
-	//		Arrays.toString(dealerShown);
-			nobet = true;
 			walletMod = 0 - bet;
 			result = walletMod;
 			
 		} else if (playerHandValue == 21 && dealerHandValue == 21) {
-	// case both blackjack
-//				dealerShownResult = dealerHand;
-//				Arrays.toString(dealerShownResult);
-//				nobet = true;
 				walletMod = 0;
 				System.out.println("Tie bet:" + bet + "line 89");
 				System.out.println("Tie:" + walletMod + "line 89");
 				result = walletMod;
 				
 		} else if (playerHandValue == 21) {
-	// case player blackjack
-	//		wallet = wallet + (1.5* bet);
 				walletMod = (1.5 * bet);
 					
-//					dealerShownResult = dealerHand;
-//					Arrays.toString(dealerShownResult);
-	//				Arrays.toString(dealerShown);
-//				nobet = true;
 				System.out.println("Won = 21 bet:" + bet + "line 79");
 				System.out.println("Won = 21 should be more:" + walletMod + "line 79");
-	//			result = "win";
 				result = walletMod;
 					
 		} else if (dealerHandValue > 21) {
-	// case dealer bust
 				walletMod = 2 * bet;
-//				dealerShownResult = dealerHand;
-//					Arrays.toString(dealerShownResult);
-//				nobet = true;
 				System.out.println("Win dealer > 21 bet:" + bet + "line 89");
 				System.out.println("Win dealer > 21 should be more:" + walletMod + "line 89");
 				result = walletMod;
@@ -98,35 +78,21 @@ public class HandMath {
 				System.out.println(walletMod);
 		} else if (playerHandValue > dealerHandValue) {
 				walletMod = 2* bet;
-//					dealerShownResult = dealerHand;
-//					Arrays.toString(dealerShownResult);
-				nobet = true;
-//				model.addAttribute("wallet", wallet);
 				System.out.println("won > dealer bet:" + bet + "line 99");
 				System.out.println("won > dealer should be more:" + walletMod + "line 99");
 				result = walletMod;
 					
 		} else if (playerHandValue == dealerHandValue) {
-//					dealerShownResult = dealerHand;
-//					Arrays.toString(dealerShownResult);
-					nobet = true;
 					walletMod = 0;
 					result = walletMod;
 					
 		} else if (dealerHandValue > playerHandValue) {
-//					wallet -= bet;
-//					dealerShownResult = dealerHand;
-//					Arrays.toString(dealerShownResult);
-					nobet = true;
 					walletMod = 0 - bet;
 					result = walletMod;
 					
 		} else { 
-//					Arrays.toString(dealerShownForHit);
-//					result = (Double) null; 
 		}
 				
-	//			Arrays.toString(dealerShown);
 		
 		
 		
