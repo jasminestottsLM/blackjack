@@ -10,13 +10,8 @@ public class DeckHandler {
 		private int currentCardIndex;
 		
 		public String[] CreateDeck(String[] cards) { 
-//		public String[] CreateDeck() {
-//      public CreateDeck() {
-//			this.cards = cards; 
 			cards = new String[52];
-//			for (String card: cards) {
-//				}
-		
+
 			
 			int i = 0;
 			
@@ -51,37 +46,5 @@ public class DeckHandler {
 			return cards;
 		}
 		
-//		public String[] create(String[] cards) {
-//			return cards;
-//			System.out.println(cards[]);
-//		}
-//			}
-		
-//		public void shuffle(String[] cards) {
-//			Collections.shuffle(Arrays.asList(cards));
-		
-		
+
 }
-			
-//		public String getCard() {
-//				if (currentCardIndex >= cards.length) {
-//					return null;
-//				}
-				
-//				return cardStack.pop();
-				
-//			}
-//test only			
-			
-// }
-		
-		
-
-		
-
-// test
-//		System.out.println(cards);
-	
-//		
-			
-

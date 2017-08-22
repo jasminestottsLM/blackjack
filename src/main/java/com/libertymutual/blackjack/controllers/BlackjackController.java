@@ -18,6 +18,7 @@ public class BlackjackController {
 	public String[] cards;
 	public String[] dealerHand = new String[5];
 	public String[] dealerShown;
+	public String[] dealerHit;
 	public String[] playerHand;
 	public int dealerHandCount = 0;
 	public int playerHandCount = 0;
@@ -59,12 +60,11 @@ public class BlackjackController {
 			pageName = "endgame";
 		} else if (bet == 0) {
 			System.out.println("no bet provided");
-			pageName = "blackjackgame";
+			pageName = "start";
 		} else {
 			wallet -= bet;
 			System.out.println("bet is " + bet);
 			System.out.println("wallet is " + wallet);
-// pageName = "blackjackgame";
 			pageName = "deal";
 		}
 
@@ -89,7 +89,8 @@ public class BlackjackController {
 		if (deckCount < 4) {
 			System.out.println("no more cards");
 			pageName = "endgame";
-
+			dealerShown = dealerHand;
+			
 		} else {
 			dealerHand = new String[5];
 			playerHand = new String[5];
@@ -111,10 +112,14 @@ public class BlackjackController {
 			HandMath command = new HandMath();
 			dealerHandValue = command.handMath(dealerHand);
 			playerHandValue = command.handMath(playerHand);
-
+			
+			dealerShown = dealerHand.clone();
+			dealerShown[0] = "?";
+			
 			pageName = "blackjackgame";
 		}
-
+		
+		
 		HandMath command = new HandMath();
 
 		String test = Arrays.toString(playerHand);
@@ -126,6 +131,7 @@ public class BlackjackController {
 		model.addAttribute("playerScore", playerHandValue);
 		model.addAttribute("dealerScore", dealerHandValue);
 		model.addAttribute("playerHand", Arrays.toString(playerHand));
+		model.addAttribute("dealerShown", Arrays.toString(dealerShown));
 
 		System.out.println(deckCount);
 		return pageName;
@@ -133,9 +139,6 @@ public class BlackjackController {
 
 	@PostMapping("/hit")
 	public String hits(Model model) {
-
-		dealerShown = dealerHand;
-		System.out.print(dealerShown);
 
 		HandMath command = new HandMath();
 		if (deckCount < 1) {
@@ -179,9 +182,12 @@ public class BlackjackController {
 				} else if (result == 0) {
 					pageName = "tie";
 				}
-
+				dealerHit = dealerHand;
+				
 			} else {
 				pageName = "blackjackgame";
+				dealerHit = dealerHand;
+
 			}
 
 			if (deckCount < 1) {
@@ -205,7 +211,8 @@ public class BlackjackController {
 						} else if (result == 0) {
 							pageName = "tie";
 						}
-
+						dealerHit = dealerHand;
+						
 					} else {
 						dealerHand[dealerHandCount] = cards[deckCount];
 						dealerHandValue = command.handMath(dealerHand);
@@ -228,8 +235,9 @@ public class BlackjackController {
 						} else if (result == 0) {
 							pageName = "tie";
 						}
-
+						dealerHit = dealerHand;
 					} else
+						dealerHit = dealerHand;
 						pageName = "blackjackgame";
 				}
 			}
@@ -249,15 +257,14 @@ public class BlackjackController {
 
 		System.out.println(deckCount);
 
-		dealerShown = dealerHand;
-
 		model.addAttribute("bet", bet);
 		model.addAttribute("hasBet", bet > 0);
 		model.addAttribute("wallet", wallet);
 		model.addAttribute("playerScore", playerHandValue);
 		model.addAttribute("dealerScore", dealerHandValue);
 		model.addAttribute("playerHand", Arrays.toString(playerHand));
-		model.addAttribute("dealerHand", "test");
+		model.addAttribute("dealerHand", Arrays.toString(dealerHand));
+//		model.addAttribute("dealerShown", Arrays.toString(dealerHit));
 
 		System.out.println("from hit: wallet = " + wallet);
 		return pageName;
@@ -266,7 +273,7 @@ public class BlackjackController {
 
 	@PostMapping("/stand")
 	public String stand(Model model) {
-
+//	dealerShown = dealerHand;
 		HandMath command = new HandMath();
 		HandMath math = new HandMath();
 
@@ -320,12 +327,15 @@ public class BlackjackController {
 		System.out.println(playerHandValue);
 
 		System.out.println(deckCount);
-
+		System.out.println(Arrays.toString(dealerHand));
+		
 		model.addAttribute("bet", bet);
 		model.addAttribute("wallet", wallet);
 		model.addAttribute("playerScore", playerHandValue);
 		model.addAttribute("dealerScore", dealerHandValue);
 		model.addAttribute("playerHand", Arrays.toString(playerHand));
+		model.addAttribute("dealerHand", Arrays.toString(dealerHand));
+//		model.addAttribute("dealerShown", Arrays.toString(dealerShown));
 
 		System.out.println("ok to here");
 
